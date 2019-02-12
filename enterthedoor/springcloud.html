@@ -7,7 +7,7 @@
     <meta name="description" content="千里之行始于足下">
     <link rel="icon" href="/myblog/favicon.ico">
     
-    <link rel="preload" href="/myblog/assets/css/0.styles.629c6084.css" as="style"><link rel="preload" href="/myblog/assets/js/app.6dbe1a8b.js" as="script"><link rel="preload" href="/myblog/assets/js/2.a28f5011.js" as="script"><link rel="prefetch" href="/myblog/assets/js/10.2cbafd1f.js"><link rel="prefetch" href="/myblog/assets/js/11.4a81b37d.js"><link rel="prefetch" href="/myblog/assets/js/12.0ed09055.js"><link rel="prefetch" href="/myblog/assets/js/3.4e913f9d.js"><link rel="prefetch" href="/myblog/assets/js/4.63df8f4b.js"><link rel="prefetch" href="/myblog/assets/js/5.4b44f766.js"><link rel="prefetch" href="/myblog/assets/js/6.b3920083.js"><link rel="prefetch" href="/myblog/assets/js/7.d043e248.js"><link rel="prefetch" href="/myblog/assets/js/8.7094e3d8.js"><link rel="prefetch" href="/myblog/assets/js/9.0aecaa63.js">
+    <link rel="preload" href="/myblog/assets/css/0.styles.629c6084.css" as="style"><link rel="preload" href="/myblog/assets/js/app.5a435c52.js" as="script"><link rel="preload" href="/myblog/assets/js/2.b94a34e4.js" as="script"><link rel="prefetch" href="/myblog/assets/js/10.daa8df88.js"><link rel="prefetch" href="/myblog/assets/js/11.008c8af6.js"><link rel="prefetch" href="/myblog/assets/js/12.72fa25d2.js"><link rel="prefetch" href="/myblog/assets/js/3.dcb46cf2.js"><link rel="prefetch" href="/myblog/assets/js/4.2f583edf.js"><link rel="prefetch" href="/myblog/assets/js/5.d8b20c18.js"><link rel="prefetch" href="/myblog/assets/js/6.40026dca.js"><link rel="prefetch" href="/myblog/assets/js/7.3255ed51.js"><link rel="prefetch" href="/myblog/assets/js/8.2d329757.js"><link rel="prefetch" href="/myblog/assets/js/9.b760c962.js">
     <link rel="stylesheet" href="/myblog/assets/css/0.styles.629c6084.css">
   </head>
   <body>
@@ -102,7 +102,80 @@ java -jar api.jar启动<br>
 访问localhost:8088/api/hello成功</p> <h2 id="spring-boot-进阶"><a href="#spring-boot-进阶" aria-hidden="true" class="header-anchor">#</a> spring boot 进阶</h2> <p>读到这相信你已经发现sb的好处，代码简洁、结构清晰，前面是初步介绍sb，下面开始深入了解sb。</p> <h3 id="properties-yml文件"><a href="#properties-yml文件" aria-hidden="true" class="header-anchor">#</a> properties/yml文件</h3> <p>下面以properties为例列出sb常用配置</p> <table><thead><tr><th>配置项</th> <th>说明</th> <th>举例</th></tr></thead> <tbody><tr><td>server.port</td> <td>服务端口</td> <td>server.port=8088</td></tr> <tr><td>server.context-path</td> <td>应用程序上下文</td> <td>server.context-path=/api,则访问地址为：http://ip:port/api</td></tr> <tr><td>spring.jpa.database</td> <td>数据库类型</td> <td>spring.jpa.database=MYSQL  <a href="#jpa">JPA &amp; Spring Data JPA</a></td></tr> <tr><td>spring.jpa.properties.hibernate.dialect</td> <td>hql方言</td> <td>spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect</td></tr> <tr><td>spring.jpa.showSql</td> <td>是否打印sql语句</td> <td>spring.jpa.showSql=true</td></tr> <tr><td>spring.datasource.url</td> <td>数据库连接字符串</td> <td>spring.datasource.url=jdbc:mysql://localhost:3306/database?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true</td></tr> <tr><td>spring.datasource.username</td> <td>数据库用户名</td> <td>spring.datasource.username=root</td></tr> <tr><td>spring.datasource.password</td> <td>数据库密码</td> <td>spring.datasource.password=root</td></tr> <tr><td>spring.datasource.driverClassName</td> <td>数据库驱动</td> <td>spring.datasource.driverClassName=com.mysql.jdbc.Driver</td></tr> <tr><td>spring.http.multipart.maxFileSize</td> <td>最大文件上传大小,-1为不限制</td> <td>spring.http.multipart.maxFileSize=-1</td></tr></tbody></table> <h3 id="多环境配置"><a href="#多环境配置" aria-hidden="true" class="header-anchor">#</a> 多环境配置</h3> <p>通常应用系统开发过程中经历开发、测试、生产三个阶段，不同阶段的环境配置往往不同，打包的时候再更改配置文件太不方便，于是我们可以采用多环境配置。<br>
 1.首先创建多环境配置文件，application-dev.properties(yml),application-test.properties,application-dep.properties,对应三个阶段，在各个文件中添加各自的环境配置信息。<br>
 2.更改默认配置文件,添加<code>spring.profiles.active=dev</code>,指定当前项目打包配置为dev，<code>spring.profiles.active=dep</code>则打包配置为dep。<br>
-3.运行：<code>java -jar api.jar</code><br> <img src="/myblog/assets/img/multien.4f264ad6.png" alt="multien"></p> <h3 id="注解"><a href="#注解" aria-hidden="true" class="header-anchor">#</a> 注解</h3> <p>未完，待续。。<br> <span id="jpa">JPA &amp; Spring Data JPA</span><br>
+3.运行：<code>java -jar api.jar</code><br> <img src="/myblog/assets/img/multien.4f264ad6.png" alt="multien"></p> <h3 id="注解"><a href="#注解" aria-hidden="true" class="header-anchor">#</a> 注解</h3> <p>sb主要采用注解的方式，下面详细介绍项目中常用注解。</p> <ul><li>@SpringBootApplication<br>
+标识程序启动main方法，不加这个注解程序无法启动。SpringBootApplication类上有三个注解，@SpringBootConfiguration表示配置注解，@EnableAutoConfiguration表示自动配置，@ComponentScan表示扫描Bean的规则,@SpringBootApplication也可以使用这三个代替。</li> <li>@Value<br>
+定义全局变量，相当于以往public static声明变量。可以把全局变量存储在配置文件中通过@Value取出<br>
+application.properties中添加自定义变量<code>server.custompara=cpara</code>，如下代码则可以取出cpara</li></ul> <div class="language- extra-class"><pre class="language-text"><code>@Value(&quot;${server.custompara}&quot;)
+String custompara;
+    
+@RequestMapping(&quot;getcustompara&quot;)
+String getCustomPara(){
+  	return custompara;
+}
+</code></pre></div><p><img src="data:image/png;base64,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" alt="custompara"></p> <ul><li>@Bean<br>
+定义一个Bean，主要用在@Configuration和@SpringBootConfiguration注解的类或@Component注解的类。<br>
+以淘宝工具接口参数配置为例，配置文件中toolappkey,toolsecret,toolurl如下图：<br> <img src="/myblog/assets/img/classano1.0ab7d308.png" alt="classano1"><br>
+定义Taobaotool参数类</li></ul> <div class="language- extra-class"><pre class="language-text"><code>/**
+ * @author JIAY
+ * taobao tool
+ */
+public class Taobaotool {
+    private String toolappkey;
+    private String toolsecret;
+    private String toolurl;
+    
+    public void setToolappkey(String toolappkey){
+    	this.toolappkey = toolappkey;
+    }
+    
+    public void setToolsecret(String toolsecret){
+    	this.toolsecret = toolsecret;
+    }
+    
+    public void setToolurl(String toolurl){
+    	this.toolurl = toolurl;
+    }
+    
+    public String getToolappkey(){
+    	return toolappkey;
+    }
+    
+    public String getToolsecret(){
+    	return toolsecret;
+    }
+    
+    public String getToolurl(){
+    	return toolurl;
+    }
+}
+</code></pre></div><p>配置类加载参数</p> <div class="language- extra-class"><pre class="language-text"><code>@SpringBootConfiguration
+public class ConfigurationAnimation {
+    
+	@Value(&quot;${toolappkey}&quot;)
+	private String toolappkey;
+	@Value(&quot;${toolsecret}&quot;)
+	private String toolsecret;
+	@Value(&quot;${toolurl}&quot;)
+	private String toolurl;
+	
+	@Bean
+	public Taobaotool taobaotool(){
+		Taobaotool tbt = new Taobaotool();
+		tbt.setToolappkey(toolappkey);
+		tbt.setToolsecret(toolsecret);
+		tbt.setToolurl(toolurl);
+		return tbt;
+	}
+}
+</code></pre></div><p>注入Taobaotool并调用</p> <div class="language- extra-class"><pre class="language-text"><code>//注入类
+@Autowired
+private Taobaotool taobaotool;
+   
+@RequestMapping(&quot;gettaobaotool&quot;)
+String getTaobaotool(){
+	return taobaotool.getToolappkey() + &quot;,&quot; + taobaotool.getToolsecret() + &quot;,&quot; + taobaotool.getToolurl();
+}
+</code></pre></div><p>验证结果<br> <img src="/myblog/assets/img/classano2.230e5dfd.png" alt="classano2"></p> <p>未完，待续。。<br> <span id="jpa">JPA &amp; Spring Data JPA</span><br>
 JPA是Java Persistence API的简称，中文名Java持久层API，是Sun官方提出的Java持久化规范，其设计目标主要是为了简化现有的持久化开发工作和整合ORM技术。JPA使用XML文件或注解（JDK 5.0或更高版本）来描述对象-关联表的映射关系，能够将运行期的实体对象持久化到数据库，它为Java开发人员提供了一种ORM工具来管理Java应用中的关系数据。 简单地说，JPA就是为POJO（Plain Ordinary Java Object）提供持久化的标准规范，即将Java的普通对象通过对象关系映射（Object-Relational Mapping，ORM）持久化到数据库中。由于JPA是在充分吸收了现有Hibernate，TopLink，JDO等ORM框架的基础上发展而来的，因而具有易于使用、伸缩性强等优点。
 Spring Data JPA 是 Spring 基于 Spring Data 框架、在JPA 规范的基础上开发的一个框架，使用 Spring Data JPA 可以极大地简化JPA 的写法，可以在几乎不用写实现的情况下实现对数据库的访问和操作，除了CRUD外，还包括分页和排序等一些常用的功能。</p></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
         ←
@@ -113,6 +186,6 @@ Spring Data JPA 是 Spring 基于 Spring Data 框架、在JPA 规范的基础上
         </a>
         →
       </span></p></div> </div> <!----></div></div>
-    <script src="/myblog/assets/js/app.6dbe1a8b.js" defer></script><script src="/myblog/assets/js/2.a28f5011.js" defer></script>
+    <script src="/myblog/assets/js/app.5a435c52.js" defer></script><script src="/myblog/assets/js/2.b94a34e4.js" defer></script>
   </body>
 </html>
