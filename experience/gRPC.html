@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>gRPC实战总结 | Jiay</title>
+    <meta name="description" content="不忘初心">
+    <link rel="icon" href="/myblog/favicon.ico">
+    
+    <link rel="preload" href="/myblog/assets/css/0.styles.94708bcb.css" as="style"><link rel="preload" href="/myblog/assets/js/app.7acfb884.js" as="script"><link rel="preload" href="/myblog/assets/js/3.1d7764ce.js" as="script"><link rel="prefetch" href="/myblog/assets/js/10.a3bedc7e.js"><link rel="prefetch" href="/myblog/assets/js/11.39ff3439.js"><link rel="prefetch" href="/myblog/assets/js/12.1a3eaf39.js"><link rel="prefetch" href="/myblog/assets/js/13.58bba48b.js"><link rel="prefetch" href="/myblog/assets/js/14.5afa5faa.js"><link rel="prefetch" href="/myblog/assets/js/15.88eff212.js"><link rel="prefetch" href="/myblog/assets/js/16.46d65706.js"><link rel="prefetch" href="/myblog/assets/js/2.b9570719.js"><link rel="prefetch" href="/myblog/assets/js/4.1a958b52.js"><link rel="prefetch" href="/myblog/assets/js/5.7dd1ff32.js"><link rel="prefetch" href="/myblog/assets/js/6.d7584087.js"><link rel="prefetch" href="/myblog/assets/js/7.15f31758.js"><link rel="prefetch" href="/myblog/assets/js/8.bf4c0916.js"><link rel="prefetch" href="/myblog/assets/js/9.c124878b.js">
+    <link rel="stylesheet" href="/myblog/assets/css/0.styles.94708bcb.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/myblog/" class="home-link router-link-active"><!----> <span class="site-name">Jiay</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Blog</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myblog/about/" class="nav-link">About</a></li><li class="dropdown-item"><!----> <a href="/myblog/experience/" class="nav-link router-link-active">Experience</a></li><li class="dropdown-item"><!----> <a href="/myblog/enterthedoor/" class="nav-link">Enterthedoor</a></li><li class="dropdown-item"><!----> <a href="/myblog/read/" class="nav-link">Read</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Blog</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myblog/about/" class="nav-link">About</a></li><li class="dropdown-item"><!----> <a href="/myblog/experience/" class="nav-link router-link-active">Experience</a></li><li class="dropdown-item"><!----> <a href="/myblog/enterthedoor/" class="nav-link">Enterthedoor</a></li><li class="dropdown-item"><!----> <a href="/myblog/read/" class="nav-link">Read</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/myblog/experience/datax.html" class="sidebar-link">DataX --alibaba</a></li><li><a href="/myblog/experience/springboot-swagger2.html" class="sidebar-link">springboot-shiro项目集成swagger2</a></li><li><a href="/myblog/experience/gRPC.html" class="active sidebar-link">gRPC实战总结</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/myblog/experience/gRPC.html#添加依赖" class="sidebar-link">添加依赖</a></li><li class="sidebar-sub-header"><a href="/myblog/experience/gRPC.html#创建描述文件" class="sidebar-link">创建描述文件</a></li><li class="sidebar-sub-header"><a href="/myblog/experience/gRPC.html#maven生成代码并更新目录" class="sidebar-link">maven生成代码并更新目录</a></li><li class="sidebar-sub-header"><a href="/myblog/experience/gRPC.html#实现服务类" class="sidebar-link">实现服务类</a></li><li class="sidebar-sub-header"><a href="/myblog/experience/gRPC.html#服务器实现" class="sidebar-link">服务器实现</a></li><li class="sidebar-sub-header"><a href="/myblog/experience/gRPC.html#客户端实现" class="sidebar-link">客户端实现</a></li><li class="sidebar-sub-header"><a href="/myblog/experience/gRPC.html#完结" class="sidebar-link">完结</a></li><li class="sidebar-sub-header"><a href="/myblog/experience/gRPC.html#欢迎来访" class="sidebar-link">欢迎来访</a></li></ul></li><li><a href="/myblog/experience/thingsboard.html" class="sidebar-link">thingsboard</a></li></ul> </div> <div class="page"> <div class="content"><h1 id="grpc实战总结"><a href="#grpc实战总结" aria-hidden="true" class="header-anchor">#</a> gRPC实战总结</h1> <p>最近工作中在java项目中使用到gRPC，为防遗忘特在此留痕。<br>
+关于gRPC是什么，从何而来，什么使用场景这里就不再赘述，相信能看到这篇文章的朋友既是对gRPC有相关了解了，下面直接进入主题。</p> <h2 id="添加依赖"><a href="#添加依赖" aria-hidden="true" class="header-anchor">#</a> 添加依赖</h2> <div class="language- extra-class"><pre class="language-text"><code>&lt;properties&gt;
+	&lt;grpc.version&gt;1.12.0&lt;/grpc.version&gt;
+	&lt;protoc.version&gt;3.5.1-1&lt;/protoc.version&gt;
+&lt;/properties&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+		&lt;groupId&gt;io.grpc&lt;/groupId&gt;
+		&lt;artifactId&gt;grpc-netty&lt;/artifactId&gt;
+		&lt;version&gt;${grpc.version}&lt;/version&gt;
+	&lt;/dependency&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;io.grpc&lt;/groupId&gt;
+		&lt;artifactId&gt;grpc-protobuf&lt;/artifactId&gt;
+		&lt;version&gt;${grpc.version}&lt;/version&gt;
+	&lt;/dependency&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;io.grpc&lt;/groupId&gt;
+		&lt;artifactId&gt;grpc-stub&lt;/artifactId&gt;
+		&lt;version&gt;${grpc.version}&lt;/version&gt;
+	&lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;build&gt;
+	&lt;extensions&gt;
+		&lt;extension&gt;
+			&lt;groupId&gt;kr.motd.maven&lt;/groupId&gt;
+			&lt;artifactId&gt;os-maven-plugin&lt;/artifactId&gt;
+			&lt;version&gt;1.5.0.Final&lt;/version&gt;
+		&lt;/extension&gt;
+	&lt;/extensions&gt;
+	&lt;plugins&gt;
+        &lt;plugin&gt;
+			&lt;groupId&gt;org.xolstice.maven.plugins&lt;/groupId&gt;
+			&lt;artifactId&gt;protobuf-maven-plugin&lt;/artifactId&gt;
+			&lt;version&gt;0.5.1&lt;/version&gt;
+			&lt;configuration&gt;
+				&lt;protocArtifact&gt;com.google.protobuf:protoc:${protoc.version}:exe:${os.detected.classifier}
+				&lt;/protocArtifact&gt;
+				&lt;pluginId&gt;grpc-java&lt;/pluginId&gt;
+				&lt;pluginArtifact&gt;io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}
+				&lt;/pluginArtifact&gt;
+			&lt;/configuration&gt;
+			&lt;executions&gt;
+				&lt;execution&gt;
+					&lt;goals&gt;
+						&lt;goal&gt;compile&lt;/goal&gt;
+						&lt;goal&gt;compile-custom&lt;/goal&gt;
+					&lt;/goals&gt;
+				&lt;/execution&gt;
+			&lt;/executions&gt;
+		&lt;/plugin&gt;
+	&lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre></div><h2 id="创建描述文件"><a href="#创建描述文件" aria-hidden="true" class="header-anchor">#</a> 创建描述文件</h2> <div class="language- extra-class"><pre class="language-text"><code>syntax = &quot;proto3&quot;;
+
+option java_multiple_files = true;
+option java_package = &quot;com.**.**.**.**.hydrologicgrpcsvr&quot;;
+option java_outer_classname = &quot;HydrologicProto&quot;;
+option objc_class_prefix = &quot;HGS&quot;;
+
+package hydrologicgrpcsvr;
+
+//定义服务
+service HydrologicService {
+    //服务中的方法，根据DownwardOrder类型的参数获取UpwardRespond类型的结果
+    //获取时钟
+    rpc getSZ51H (DownwardOrder51H) returns (UpwardRespond51H) {
+    }
+    ...
+    ...
+    ...
+    //此处省略N个方法
+
+    //定义51H下行命令消息类型
+    message DownwardOrder51H {
+        string devid = 1;
+        string centeraddr = 2;
+        string flownum = 3;
+        string pwd = 4;
+        string afn = 5;
+    }
+
+    //定义51H上行响应消息类型
+    message UpwardRespond51H {
+        string devid = 1;
+        string centeraddr = 2;
+        string flownum = 3;
+        string pwd = 4;
+        string afn = 5;
+        string sendtime = 6;
+        bool issuccess = 7;
+        string returnmsg = 8 ;
+    }
+    ...
+    ...
+    ...
+    //此处省略N个对象
+}
+</code></pre></div><h2 id="maven生成代码并更新目录"><a href="#maven生成代码并更新目录" aria-hidden="true" class="header-anchor">#</a> maven生成代码并更新目录</h2> <p><img src="/myblog/assets/img/maven_ganerated.76280bb4.png" alt="maven_ganerated"></p> <h2 id="实现服务类"><a href="#实现服务类" aria-hidden="true" class="header-anchor">#</a> 实现服务类</h2> <div class="language- extra-class"><pre class="language-text"><code>public class HydrologicServiceImplBaseImpl extends HydrologicServiceGrpc.HydrologicServiceImplBase {
+
+    private static Logger logger = LoggerFactory.getLogger(HydrologicServiceImplBaseImpl.class);
+
+    @Override
+    public void getSZ51H(DownwardOrder51H request, StreamObserver&lt;UpwardRespond51H&gt; responseObserver) {
+        String devid = request.getDevid();
+        GrpcCache.responseObservercache_51H.put(devid, responseObserver);
+        HydrBaseBean hydrBaseBean = new HydrBaseBean();
+        hydrBaseBean.setYczdz(devid);
+        hydrBaseBean.setZxzdz(&quot;01&quot;);
+        hydrBaseBean.setLsh(&quot;0001&quot;);
+        hydrBaseBean.setPwd(&quot;1234&quot;);
+        hydrBaseBean.setGnm(&quot;51&quot;);
+        hydrBaseBean.setEncodeType(Global.ControlCharacters.ENQ.getcch());
+        HandlerManager hm = SpringUtil.getBean(HandlerManager.class);
+        IHandler handler = hm.getHandler(Integer.parseInt(hydrBaseBean.getGnm(), 16));
+        //根据encodeType进行组包
+        String reshex = handler.encode(hydrBaseBean);
+        String issuccess = new ProtocalAdapterImpl().send2dev(reshex, devid);
+        if (!issuccess.equals(&quot;true&quot;)) {
+            //下发失败立即返回
+            //只有私有构造方法，所以只能通过builder来构造
+            UpwardRespond51H upwardRespond51H = UpwardRespond51H.newBuilder()
+                    .setDevid(devid)
+                    .setAfn(&quot;51&quot;)
+                    .setIssuccess(false)
+                    .setReturnmsg(issuccess)
+                    .build();
+            //用于返回结果
+            responseObserver.onNext(upwardRespond51H);
+            //用于告诉客户端调用已结束
+            responseObserver.onCompleted();
+            GrpcCache.responseObservercache_51H.invalidate(devid);
+        }
+    }
+}    
+</code></pre></div><h2 id="服务器实现"><a href="#服务器实现" aria-hidden="true" class="header-anchor">#</a> 服务器实现</h2> <div class="language- extra-class"><pre class="language-text"><code>public class HydrologicGrpcServer {
+    private Logger logger = Logger.getLogger(HydrologicGrpcServer.class.getName());
+    public static final int DEFAULT_PORT = 3135;
+
+    private int port;//服务端口号
+
+    private Server server;
+
+    public HydrologicGrpcServer(int port) {
+        this(port, ServerBuilder.forPort(port));
+    }
+
+    public HydrologicGrpcServer(int port, ServerBuilder&lt;?&gt; serverBuilder) {
+        this.port = port;
+
+        //构造服务器，添加我们实际的服务
+        server = serverBuilder.addService(new HydrologicServiceImplBaseImpl()).build();
+    }
+
+    public void start() throws IOException {
+        server.start();
+        logger.info(&quot;gRPC server has started, listening on &quot; + port);
+        Thread gcacherefresh = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(3000);
+                        GrpcCache.responseObservercache_51H.cleanUp();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        gcacherefresh.start();
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+
+                HydrologicGrpcServer.this.stop();
+
+            }
+        });
+    }
+
+    public void stop() {
+
+        if (server != null)
+            server.shutdown();
+
+    }
+
+    //阻塞到应用停止
+    public void blockUntilShutdown() throws InterruptedException {
+        if (server != null) {
+            server.awaitTermination();
+        }
+    }
+}
+</code></pre></div><h2 id="客户端实现"><a href="#客户端实现" aria-hidden="true" class="header-anchor">#</a> 客户端实现</h2> <div class="language- extra-class"><pre class="language-text"><code>public class HydrologicGrpcClient {
+    private Logger logger = Logger.getLogger(HydrologicGrpcClient.class.getName());
+    private static final String DEFAULT_HOST = &quot;localhost&quot;;
+
+    public static final int DEFAULT_PORT = 3135;
+
+    private ManagedChannel managedChannel;
+
+    //服务存根，用于客户端本地调用
+    private HydrologicServiceGrpc.HydrologicServiceBlockingStub simpleServiceBlockingStub;
+
+    public HydrologicGrpcClient(String host, int port){
+        this(ManagedChannelBuilder.forAddress(host,port).usePlaintext(true).build());
+    }
+
+    public HydrologicGrpcClient(ManagedChannel managedChannel) {
+        this.managedChannel = managedChannel;
+        this.simpleServiceBlockingStub = HydrologicServiceGrpc.newBlockingStub(managedChannel);
+    }
+
+    public void shutdown() throws InterruptedException {
+        managedChannel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
+    }
+
+    //获取终端时钟
+    public UpwardRespond51H getDevSZ51H(String devId){
+
+        DownwardOrder51H downwardOrder = DownwardOrder51H.newBuilder()
+                .setDevid(devId)
+                .setAfn(&quot;51&quot;).build();
+
+        UpwardRespond51H upwardRespond;
+        try {
+            upwardRespond = simpleServiceBlockingStub.getSZ51H(downwardOrder);
+            if(upwardRespond.getIssuccess()){
+                logger.log(Level.WARNING, devId+&quot;: 51下发请求成功&quot;);
+            }else {
+                logger.log(Level.WARNING, devId+&quot;: 51下发请求失败&quot;);
+            }
+        } catch (StatusRuntimeException e) {
+            logger.log(Level.WARNING, &quot;RPC failed: {0}&quot;, e.getStatus());
+            return null;
+        }
+
+        return upwardRespond;
+    }
+}    
+</code></pre></div><h2 id="完结"><a href="#完结" aria-hidden="true" class="header-anchor">#</a> 完结</h2> <p>到此一个完整的gRPC应用示例就完成了，朋友们动起手来吧。。  后续补充protocol-buffers数据类型等。</p> <h3 style="text-align:right">-- Jiay 2019/7/15 00:23</h3> <h2 id="欢迎来访"><a href="#欢迎来访" aria-hidden="true" class="header-anchor">#</a> 欢迎来访</h2> <ul><li>反馈交流qq群:934022738</li> <li>请小编喝茶~</li></ul> <p><img src="/myblog/assets/img/wx.a41824f9.png" alt="wx"> <img src="/myblog/assets/img/zfb.9f7f37ee.png" alt="zfb"></p></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/myblog/experience/springboot-swagger2.html" class="prev">
+          springboot-shiro项目集成swagger2
+        </a></span> <span class="next"><a href="/myblog/experience/thingsboard.html">
+          thingsboard
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/myblog/assets/js/app.7acfb884.js" defer></script><script src="/myblog/assets/js/3.1d7764ce.js" defer></script>
+  </body>
+</html>
