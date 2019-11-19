@@ -7,7 +7,7 @@
     <meta name="description" content="不忘初心">
     <link rel="icon" href="/myblog/favicon.ico">
     
-    <link rel="preload" href="/myblog/assets/css/0.styles.a938fca8.css" as="style"><link rel="preload" href="/myblog/assets/js/app.95ded42c.js" as="script"><link rel="preload" href="/myblog/assets/js/2.0ebd7f1f.js" as="script"><link rel="preload" href="/myblog/assets/js/7.bb507549.js" as="script"><link rel="prefetch" href="/myblog/assets/js/10.a0e20ade.js"><link rel="prefetch" href="/myblog/assets/js/11.0834280e.js"><link rel="prefetch" href="/myblog/assets/js/12.c07a9c6e.js"><link rel="prefetch" href="/myblog/assets/js/13.ee483615.js"><link rel="prefetch" href="/myblog/assets/js/14.03de321d.js"><link rel="prefetch" href="/myblog/assets/js/15.47ea0a77.js"><link rel="prefetch" href="/myblog/assets/js/16.d2437bd9.js"><link rel="prefetch" href="/myblog/assets/js/17.3e9c0d0d.js"><link rel="prefetch" href="/myblog/assets/js/18.b0e56813.js"><link rel="prefetch" href="/myblog/assets/js/19.ea9553a8.js"><link rel="prefetch" href="/myblog/assets/js/20.09deddab.js"><link rel="prefetch" href="/myblog/assets/js/21.778f2b09.js"><link rel="prefetch" href="/myblog/assets/js/22.17d2e033.js"><link rel="prefetch" href="/myblog/assets/js/23.ea4bf3f2.js"><link rel="prefetch" href="/myblog/assets/js/24.6ab2d397.js"><link rel="prefetch" href="/myblog/assets/js/25.e480e72c.js"><link rel="prefetch" href="/myblog/assets/js/26.718f6b78.js"><link rel="prefetch" href="/myblog/assets/js/3.cd058d3f.js"><link rel="prefetch" href="/myblog/assets/js/4.d0309a8a.js"><link rel="prefetch" href="/myblog/assets/js/5.4c58edf4.js"><link rel="prefetch" href="/myblog/assets/js/6.7dbfd1d0.js"><link rel="prefetch" href="/myblog/assets/js/8.939d1fbd.js"><link rel="prefetch" href="/myblog/assets/js/9.780c7042.js">
+    <link rel="preload" href="/myblog/assets/css/0.styles.a938fca8.css" as="style"><link rel="preload" href="/myblog/assets/js/app.c4f9455c.js" as="script"><link rel="preload" href="/myblog/assets/js/2.0ebd7f1f.js" as="script"><link rel="preload" href="/myblog/assets/js/7.89f77063.js" as="script"><link rel="prefetch" href="/myblog/assets/js/10.b2e6a04e.js"><link rel="prefetch" href="/myblog/assets/js/11.f0b7bd66.js"><link rel="prefetch" href="/myblog/assets/js/12.c07a9c6e.js"><link rel="prefetch" href="/myblog/assets/js/13.ee483615.js"><link rel="prefetch" href="/myblog/assets/js/14.03de321d.js"><link rel="prefetch" href="/myblog/assets/js/15.b38fc955.js"><link rel="prefetch" href="/myblog/assets/js/16.d2437bd9.js"><link rel="prefetch" href="/myblog/assets/js/17.0504942d.js"><link rel="prefetch" href="/myblog/assets/js/18.b0e56813.js"><link rel="prefetch" href="/myblog/assets/js/19.d022ba25.js"><link rel="prefetch" href="/myblog/assets/js/20.7f59bc52.js"><link rel="prefetch" href="/myblog/assets/js/21.ff290f8d.js"><link rel="prefetch" href="/myblog/assets/js/22.2f2bdebd.js"><link rel="prefetch" href="/myblog/assets/js/23.ea4bf3f2.js"><link rel="prefetch" href="/myblog/assets/js/24.6ab2d397.js"><link rel="prefetch" href="/myblog/assets/js/25.fcad21d0.js"><link rel="prefetch" href="/myblog/assets/js/26.718f6b78.js"><link rel="prefetch" href="/myblog/assets/js/3.cd058d3f.js"><link rel="prefetch" href="/myblog/assets/js/4.78eae1e0.js"><link rel="prefetch" href="/myblog/assets/js/5.fb91d2e4.js"><link rel="prefetch" href="/myblog/assets/js/6.eb000716.js"><link rel="prefetch" href="/myblog/assets/js/8.939d1fbd.js"><link rel="prefetch" href="/myblog/assets/js/9.ce0ea8c7.js">
     <link rel="stylesheet" href="/myblog/assets/css/0.styles.a938fca8.css">
   </head>
   <body>
@@ -123,8 +123,17 @@ logging:
 把mysql-connector-java-5.1.38-bin.jar拷贝到文件夹内，cmd进入当前文件夹，执行生成脚本。<br>
 数据库结构生成init-table.xml</li></ul></li></ul> <div class="language- extra-class"><pre class="language-text"><code>liquibase --driver=com.mysql.jdbc.Driver --classpath=mysql-connector-java-5.1.38-bin.jar --changeLogFile=./init-table.xml --url=&quot;jdbc:mysql://localhost:3306/jiay&quot; --username=root --password=jc1 generateChangeLog
 </code></pre></div><p>数据库数据生成init-data.xml</p> <div class="language- extra-class"><pre class="language-text"><code>liquibase --driver=com.mysql.jdbc.Driver --classpath=mysql-connector-java-5.1.38-bin.jar --changeLogFile=./init-data.xml --url=&quot;jdbc:mysql://localhost:3306/jiay?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai&amp;autoReconnect=true&quot; --username=root --password=jc1 --diffTypes=data generateChangeLog
+</code></pre></div><p>比较数据库差异生成changelog</p> <div class="language- extra-class"><pre class="language-text"><code>liquibase \
+--url=jdbc:mysql://localhost:3306/jiay \
+--username=username \
+--password=password \
+--changeLogFile=changelog.xml 
+diffChangeLog \
+--referenceUrl=jdbc:mysql://localhost:3306/jiay2 \
+--referenceUsername=username \
+--referencePassword=password
 </code></pre></div><ul><li>引入项目<br>
-init-table.xml和init-data.xml拷贝到liquibase文件夹内，然后就可以在changelog-master.xml中选则是否包含配置进行升级或迁移。
+init-table.xml和init-data.xml或changelog.xml拷贝到liquibase文件夹内，然后就可以在changelog-master.xml中选则是否包含配置进行迁移或升级。
 <ul><li>新增列<br>
 新建upgrade-table-user.xml包含到changelog-master.xml中</li></ul></li></ul> <div class="language- extra-class"><pre class="language-text"><code>&lt;?xml version=&quot;1.1&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;
 &lt;databaseChangeLog xmlns=&quot;http://www.liquibase.org/xml/ns/dbchangelog&quot; xmlns:ext=&quot;http://www.liquibase.org/xml/ns/dbchangelog-ext&quot; xmlns:pro=&quot;http://www.liquibase.org/xml/ns/pro&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd&quot;&gt;
@@ -139,6 +148,6 @@ init-table.xml和init-data.xml拷贝到liquibase文件夹内，然后就可以�
         <a href="/myblog/experience/webservice.html" class="prev">
           Cxf实现webservice实战入门
         </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
-    <script src="/myblog/assets/js/app.95ded42c.js" defer></script><script src="/myblog/assets/js/2.0ebd7f1f.js" defer></script><script src="/myblog/assets/js/7.bb507549.js" defer></script>
+    <script src="/myblog/assets/js/app.c4f9455c.js" defer></script><script src="/myblog/assets/js/2.0ebd7f1f.js" defer></script><script src="/myblog/assets/js/7.89f77063.js" defer></script>
   </body>
 </html>
