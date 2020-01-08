@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>nodered常用数据库操作 | Jiay</title>
+    <meta name="description" content="welcome!">
+    <link rel="icon" href="/myblog/favicon.ico">
+    
+    <link rel="preload" href="/myblog/assets/css/0.styles.a938fca8.css" as="style"><link rel="preload" href="/myblog/assets/js/app.ea8ac135.js" as="script"><link rel="preload" href="/myblog/assets/js/2.d117081b.js" as="script"><link rel="preload" href="/myblog/assets/js/6.51872705.js" as="script"><link rel="preload" href="/myblog/assets/js/11.88fd6eb4.js" as="script"><link rel="prefetch" href="/myblog/assets/js/10.e0b8d3b8.js"><link rel="prefetch" href="/myblog/assets/js/12.35df9b6e.js"><link rel="prefetch" href="/myblog/assets/js/13.03173943.js"><link rel="prefetch" href="/myblog/assets/js/14.77b392dd.js"><link rel="prefetch" href="/myblog/assets/js/15.8dae48bc.js"><link rel="prefetch" href="/myblog/assets/js/16.f74b3a18.js"><link rel="prefetch" href="/myblog/assets/js/17.8b919cbf.js"><link rel="prefetch" href="/myblog/assets/js/18.d0e83ae3.js"><link rel="prefetch" href="/myblog/assets/js/19.c5ad8663.js"><link rel="prefetch" href="/myblog/assets/js/20.f685b26a.js"><link rel="prefetch" href="/myblog/assets/js/21.ef13f21e.js"><link rel="prefetch" href="/myblog/assets/js/22.5eb420cc.js"><link rel="prefetch" href="/myblog/assets/js/23.d950a0ed.js"><link rel="prefetch" href="/myblog/assets/js/24.8a1641dc.js"><link rel="prefetch" href="/myblog/assets/js/25.4ac09209.js"><link rel="prefetch" href="/myblog/assets/js/26.df98142a.js"><link rel="prefetch" href="/myblog/assets/js/27.555684a2.js"><link rel="prefetch" href="/myblog/assets/js/28.70634b4d.js"><link rel="prefetch" href="/myblog/assets/js/29.e7819932.js"><link rel="prefetch" href="/myblog/assets/js/3.f5c5413c.js"><link rel="prefetch" href="/myblog/assets/js/30.d5315beb.js"><link rel="prefetch" href="/myblog/assets/js/4.73fa913d.js"><link rel="prefetch" href="/myblog/assets/js/5.a6e2f20b.js"><link rel="prefetch" href="/myblog/assets/js/7.e01e8977.js"><link rel="prefetch" href="/myblog/assets/js/8.3cc27e7f.js"><link rel="prefetch" href="/myblog/assets/js/9.65c9489f.js">
+    <link rel="stylesheet" href="/myblog/assets/css/0.styles.a938fca8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/myblog/" class="home-link router-link-active"><!----> <span class="site-name">Jiay</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span></span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/myblog/about/" class="sidebar-link">about</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>iot</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/myblog/experience/iot/nodered.html" class="sidebar-link">nodered + scadavis实现办公室webscada</a></li><li><a href="/myblog/experience/iot/noderedDbOperation.html" class="active sidebar-link">nodered常用数据库操作</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/myblog/experience/iot/noderedDbOperation.html#mysql" class="sidebar-link">mysql</a></li><li class="sidebar-sub-header"><a href="/myblog/experience/iot/noderedDbOperation.html#mssql" class="sidebar-link">mssql</a></li><li class="sidebar-sub-header"><a href="/myblog/experience/iot/noderedDbOperation.html#oracle" class="sidebar-link">oracle</a></li></ul></li><li><a href="/myblog/experience/iot/thingsboard.html" class="sidebar-link">thingsboard</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>experience</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>etd</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>issues</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>read</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="nodered常用数据库操作"><a href="#nodered常用数据库操作" aria-hidden="true" class="header-anchor">#</a> nodered常用数据库操作</h1> <h2 id="mysql"><a href="#mysql" aria-hidden="true" class="header-anchor">#</a> mysql</h2> <ul><li>安装节点<br>
+从node-red的节点管理中安装<br> <img src="/myblog/assets/img/mysqlinstall.8840f910.png" alt="mysqlinstall"></li> <li>查看帮助<br> <strong>节点帮助很重要，一定要仔细阅读。</strong><br> <img src="/myblog/assets/img/nodedesc.35b00e81.png" alt="nodedesc"><br>
+msg.topic: 内容是sql脚本语句<br>
+msg.payload: 以数组形式存储sql脚本参数或脚本返回值<br>
+mysqlReconnectTime：重连时间可以在settings.js中设置</li> <li>创建流程<br>
+示例采用四个节点，注入、设置topic、mysql、debug</li></ul> <div class="language- extra-class"><pre class="language-text"><code>[
+    {
+        &quot;id&quot;: &quot;fce31c80.e33&quot;,
+        &quot;type&quot;: &quot;tab&quot;,
+        &quot;label&quot;: &quot;mysqldemo&quot;,
+        &quot;disabled&quot;: false,
+        &quot;info&quot;: &quot;&quot;
+    },
+    {
+        &quot;id&quot;: &quot;5ac7fa51.6e4d44&quot;,
+        &quot;type&quot;: &quot;inject&quot;,
+        &quot;z&quot;: &quot;fce31c80.e33&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;topic&quot;: &quot;&quot;,
+        &quot;payload&quot;: &quot;&quot;,
+        &quot;payloadType&quot;: &quot;date&quot;,
+        &quot;repeat&quot;: &quot;&quot;,
+        &quot;crontab&quot;: &quot;&quot;,
+        &quot;once&quot;: false,
+        &quot;onceDelay&quot;: 0.1,
+        &quot;x&quot;: 110,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: [
+            [
+                &quot;84b8d38.57ef73&quot;
+            ]
+        ]
+    },
+    {
+        &quot;id&quot;: &quot;2bbf6de4.99bcb2&quot;,
+        &quot;type&quot;: &quot;mysql&quot;,
+        &quot;z&quot;: &quot;fce31c80.e33&quot;,
+        &quot;mydb&quot;: &quot;a052576c.4f3778&quot;,
+        &quot;name&quot;: &quot;localhost&quot;,
+        &quot;x&quot;: 500,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: [
+            [
+                &quot;a430906f.e73bd&quot;
+            ]
+        ]
+    },
+    {
+        &quot;id&quot;: &quot;a430906f.e73bd&quot;,
+        &quot;type&quot;: &quot;debug&quot;,
+        &quot;z&quot;: &quot;fce31c80.e33&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;active&quot;: true,
+        &quot;tosidebar&quot;: true,
+        &quot;console&quot;: false,
+        &quot;tostatus&quot;: false,
+        &quot;complete&quot;: &quot;false&quot;,
+        &quot;x&quot;: 670,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: []
+    },
+    {
+        &quot;id&quot;: &quot;84b8d38.57ef73&quot;,
+        &quot;type&quot;: &quot;change&quot;,
+        &quot;z&quot;: &quot;fce31c80.e33&quot;,
+        &quot;name&quot;: &quot;设定msg.topic&quot;,
+        &quot;rules&quot;: [
+            {
+                &quot;t&quot;: &quot;set&quot;,
+                &quot;p&quot;: &quot;topic&quot;,
+                &quot;pt&quot;: &quot;msg&quot;,
+                &quot;to&quot;: &quot;SELECT * FROM iot_terminal&quot;,
+                &quot;tot&quot;: &quot;str&quot;
+            }
+        ],
+        &quot;action&quot;: &quot;&quot;,
+        &quot;property&quot;: &quot;&quot;,
+        &quot;from&quot;: &quot;&quot;,
+        &quot;to&quot;: &quot;&quot;,
+        &quot;reg&quot;: false,
+        &quot;x&quot;: 320,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: [
+            [
+                &quot;2bbf6de4.99bcb2&quot;
+            ]
+        ]
+    },
+    {
+        &quot;id&quot;: &quot;a052576c.4f3778&quot;,
+        &quot;type&quot;: &quot;MySQLdatabase&quot;,
+        &quot;z&quot;: &quot;&quot;,
+        &quot;host&quot;: &quot;localhost&quot;,
+        &quot;port&quot;: &quot;3306&quot;,
+        &quot;db&quot;: &quot;iot&quot;,
+        &quot;tz&quot;: &quot;Asia/Shanghai&quot;
+    }
+]
+</code></pre></div><ul><li>测试结果<br> <img src="/myblog/assets/img/mysqlresult.96c556ca.gif" alt="mysqlresult"></li></ul> <h2 id="mssql"><a href="#mssql" aria-hidden="true" class="header-anchor">#</a> mssql</h2> <ul><li>安装节点<br>
+从node-red的节点管理中安装<br> <img src="/myblog/assets/img/mssqlinstall.67057781.png" alt="mssqlinstall"></li> <li>查看帮助<br> <strong>节点帮助很重要，一定要仔细阅读。重要的事情第二遍</strong><br> <img src="/myblog/assets/img/mssqldesc.5f97a5e9.png" alt="nodedesc"><br>
+query中输入sql脚本执行，支持<a href="http://mustache.github.io/mustache.5.html" target="_blank" rel="noopener noreferrer">mustache(胡子)<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>语法，包括msg、flow context、global context<br>
+如果query为空，则把payload当作脚本执行<br>
+多个查询将返回记录集合数组<br>
+推荐用受影响的行数校验INSERT、UPDATE、DELETE是否成功<br>
+msg.payload: 通常是返回结果</li> <li>创建流程<br>
+示例采用四个节点，注入、mssql、debug</li></ul> <div class="language- extra-class"><pre class="language-text"><code>[
+    {
+        &quot;id&quot;: &quot;fce31c80.e33&quot;,
+        &quot;type&quot;: &quot;tab&quot;,
+        &quot;label&quot;: &quot;mssqldemo&quot;,
+        &quot;disabled&quot;: false,
+        &quot;info&quot;: &quot;&quot;
+    },
+    {
+        &quot;id&quot;: &quot;5ac7fa51.6e4d44&quot;,
+        &quot;type&quot;: &quot;inject&quot;,
+        &quot;z&quot;: &quot;fce31c80.e33&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;topic&quot;: &quot;&quot;,
+        &quot;payload&quot;: &quot;&quot;,
+        &quot;payloadType&quot;: &quot;date&quot;,
+        &quot;repeat&quot;: &quot;&quot;,
+        &quot;crontab&quot;: &quot;&quot;,
+        &quot;once&quot;: false,
+        &quot;onceDelay&quot;: 0.1,
+        &quot;x&quot;: 110,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: [
+            [
+                &quot;4c7626ac.247368&quot;
+            ]
+        ]
+    },
+    {
+        &quot;id&quot;: &quot;a430906f.e73bd&quot;,
+        &quot;type&quot;: &quot;debug&quot;,
+        &quot;z&quot;: &quot;fce31c80.e33&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;active&quot;: true,
+        &quot;tosidebar&quot;: true,
+        &quot;console&quot;: false,
+        &quot;tostatus&quot;: false,
+        &quot;complete&quot;: &quot;false&quot;,
+        &quot;x&quot;: 670,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: []
+    },
+    {
+        &quot;id&quot;: &quot;4c7626ac.247368&quot;,
+        &quot;type&quot;: &quot;MSSQL&quot;,
+        &quot;z&quot;: &quot;fce31c80.e33&quot;,
+        &quot;mssqlCN&quot;: &quot;d8c7fd9f.83ef2&quot;,
+        &quot;name&quot;: &quot;localhost&quot;,
+        &quot;query&quot;: &quot;select * from FS_TREELIST&quot;,
+        &quot;outField&quot;: &quot;payload&quot;,
+        &quot;returnType&quot;: 0,
+        &quot;throwErrors&quot;: 1,
+        &quot;x&quot;: 420,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: [
+            [
+                &quot;a430906f.e73bd&quot;
+            ]
+        ]
+    },
+    {
+        &quot;id&quot;: &quot;d8c7fd9f.83ef2&quot;,
+        &quot;type&quot;: &quot;MSSQL-CN&quot;,
+        &quot;z&quot;: &quot;&quot;,
+        &quot;tdsVersion&quot;: &quot;7_3_B&quot;,
+        &quot;name&quot;: &quot;jxFrontMachine&quot;,
+        &quot;server&quot;: &quot;localhost&quot;,
+        &quot;port&quot;: &quot;1433&quot;,
+        &quot;encyption&quot;: false,
+        &quot;database&quot;: &quot;FrontMachine&quot;,
+        &quot;useUTC&quot;: true,
+        &quot;connectTimeout&quot;: &quot;15000&quot;,
+        &quot;requestTimeout&quot;: &quot;15000&quot;,
+        &quot;cancelTimeout&quot;: &quot;5000&quot;,
+        &quot;pool&quot;: &quot;5&quot;
+    }
+]
+</code></pre></div><ul><li>测试结果<br> <img src="/myblog/assets/img/mssqlresult.8982a606.gif" alt="mssqlresult"></li></ul> <h2 id="oracle"><a href="#oracle" aria-hidden="true" class="header-anchor">#</a> oracle</h2> <ul><li>安装节点<br>
+从node-red的节点管理中安装<br> <img src="/myblog/assets/img/oracledbinstall.d9aa89c1.png" alt="oracledbinstall"><br> <em>没有安装oracle客户端的话配置连接信息后会报DPI-1047错误，<a href="https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html" target="_blank" rel="noopener noreferrer">下载<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>解压包并加入环境变量</em></li> <li>查看帮助<br> <strong>节点帮助很重要，一定要仔细阅读。重要的事情说三遍</strong><br> <img src="/myblog/assets/img/oracledesc.848aee2f.png" alt="oracledesc"><br>
+msg.payload: 包含要在查询中使用的字段的数组，数组中的第一个元素与查询中的第一个“:fieldname”参数等相对应<br>
+msg.query: 包含SQL查询的字符串，如果不可用，将使用默认SQL<br>
+msg.fieldMappings: 包含对象到数组字段映射的数组。将在msg.payload的内容不是数组时使用。如果不可用，将使用默认字段映射</li> <li>创建流程<br>
+示例采用四个节点，注入、组装查询sql、oracledb、debug</li></ul> <div class="language- extra-class"><pre class="language-text"><code>[
+    {
+        &quot;id&quot;: &quot;fce31c80.e33&quot;,
+        &quot;type&quot;: &quot;tab&quot;,
+        &quot;label&quot;: &quot;oracledemo&quot;,
+        &quot;disabled&quot;: false,
+        &quot;info&quot;: &quot;&quot;
+    },
+    {
+        &quot;id&quot;: &quot;5ac7fa51.6e4d44&quot;,
+        &quot;type&quot;: &quot;inject&quot;,
+        &quot;z&quot;: &quot;fce31c80.e33&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;topic&quot;: &quot;&quot;,
+        &quot;payload&quot;: &quot;&quot;,
+        &quot;payloadType&quot;: &quot;date&quot;,
+        &quot;repeat&quot;: &quot;&quot;,
+        &quot;crontab&quot;: &quot;&quot;,
+        &quot;once&quot;: false,
+        &quot;onceDelay&quot;: 0.1,
+        &quot;x&quot;: 110,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: [
+            [
+                &quot;aa5da6fd.5c0c98&quot;
+            ]
+        ]
+    },
+    {
+        &quot;id&quot;: &quot;a430906f.e73bd&quot;,
+        &quot;type&quot;: &quot;debug&quot;,
+        &quot;z&quot;: &quot;fce31c80.e33&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;active&quot;: true,
+        &quot;tosidebar&quot;: true,
+        &quot;console&quot;: false,
+        &quot;tostatus&quot;: false,
+        &quot;complete&quot;: &quot;false&quot;,
+        &quot;x&quot;: 670,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: []
+    },
+    {
+        &quot;id&quot;: &quot;c786068b.ce5028&quot;,
+        &quot;type&quot;: &quot;oracledb&quot;,
+        &quot;z&quot;: &quot;fce31c80.e33&quot;,
+        &quot;name&quot;: &quot;localhost&quot;,
+        &quot;usequery&quot;: false,
+        &quot;query&quot;: &quot;INSERT INTO oracleTableName\n\t(fieldName1, fieldName2, Fieldname3)\n\tVALUES (\n\t\t:valueOfValuesArrayIndex0,\n\t\t:valueOfValuesArrayIndex1,\n\t\t:valueOfValuesArrayIndex2,\n\t)&quot;,
+        &quot;usemappings&quot;: false,
+        &quot;mappings&quot;: &quot;[\n\t\&quot;type\&quot;\n]&quot;,
+        &quot;server&quot;: &quot;e82ba541.cb8538&quot;,
+        &quot;resultaction&quot;: &quot;multi&quot;,
+        &quot;resultlimit&quot;: 100,
+        &quot;x&quot;: 440,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: [
+            [
+                &quot;a430906f.e73bd&quot;
+            ]
+        ]
+    },
+    {
+        &quot;id&quot;: &quot;aa5da6fd.5c0c98&quot;,
+        &quot;type&quot;: &quot;function&quot;,
+        &quot;z&quot;: &quot;fce31c80.e33&quot;,
+        &quot;name&quot;: &quot;querysql&quot;,
+        &quot;func&quot;: &quot;msg.payload = {\&quot;type\&quot;:\&quot;SZ\&quot;};\nmsg.query = \&quot;select * from REL_UMP_LMP where type=:type\&quot;;\nreturn msg;&quot;,
+        &quot;outputs&quot;: 1,
+        &quot;noerr&quot;: 0,
+        &quot;x&quot;: 270,
+        &quot;y&quot;: 120,
+        &quot;wires&quot;: [
+            [
+                &quot;c786068b.ce5028&quot;
+            ]
+        ]
+    },
+    {
+        &quot;id&quot;: &quot;e82ba541.cb8538&quot;,
+        &quot;type&quot;: &quot;oracle-server&quot;,
+        &quot;z&quot;: &quot;&quot;,
+        &quot;host&quot;: &quot;localhost&quot;,
+        &quot;port&quot;: &quot;1521&quot;,
+        &quot;reconnect&quot;: true,
+        &quot;reconnecttimeout&quot;: &quot;5000&quot;,
+        &quot;db&quot;: &quot;ORCL&quot;
+    }
+]
+</code></pre></div><ul><li>测试结果<br> <img src="/myblog/assets/img/oracleresult.8c080a0a.gif" alt="oracleresult"></li></ul> <div><h2>欢迎来访</h2> <ul><li>有问题欢迎留言或加交流qq群:934022738</li> <li>转载请注明出处</li> <li>请小编喝茶~<br><img src="/myblog/assets/img/wx.dc92fb1a.png"></li></ul></div> <!----></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/myblog/experience/iot/nodered.html" class="prev">
+          nodered + scadavis实现办公室webscada
+        </a></span> <span class="next"><a href="/myblog/experience/iot/thingsboard.html">
+          thingsboard
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/myblog/assets/js/app.ea8ac135.js" defer></script><script src="/myblog/assets/js/2.d117081b.js" defer></script><script src="/myblog/assets/js/6.51872705.js" defer></script><script src="/myblog/assets/js/11.88fd6eb4.js" defer></script>
+  </body>
+</html>
