@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用nodered实现httpclient和httpserver | Jiay</title>
+    <meta name="description" content="welcome!">
+    <link rel="icon" href="/myblog/favicon.ico">
+    
+    <link rel="preload" href="/myblog/assets/css/0.styles.a938fca8.css" as="style"><link rel="preload" href="/myblog/assets/js/app.52fee459.js" as="script"><link rel="preload" href="/myblog/assets/js/2.9a8bb71e.js" as="script"><link rel="preload" href="/myblog/assets/js/11.5c9bcb05.js" as="script"><link rel="preload" href="/myblog/assets/js/12.98191c00.js" as="script"><link rel="prefetch" href="/myblog/assets/js/10.04d808c5.js"><link rel="prefetch" href="/myblog/assets/js/13.4fa2fad5.js"><link rel="prefetch" href="/myblog/assets/js/14.3f06d707.js"><link rel="prefetch" href="/myblog/assets/js/15.8cf93999.js"><link rel="prefetch" href="/myblog/assets/js/16.93039bbd.js"><link rel="prefetch" href="/myblog/assets/js/17.a7c2086b.js"><link rel="prefetch" href="/myblog/assets/js/18.ee5ef7c1.js"><link rel="prefetch" href="/myblog/assets/js/19.71b78ae8.js"><link rel="prefetch" href="/myblog/assets/js/20.f6f3e784.js"><link rel="prefetch" href="/myblog/assets/js/21.5fb8077e.js"><link rel="prefetch" href="/myblog/assets/js/22.20753160.js"><link rel="prefetch" href="/myblog/assets/js/23.9bbd5360.js"><link rel="prefetch" href="/myblog/assets/js/24.1f72e64a.js"><link rel="prefetch" href="/myblog/assets/js/25.681ec370.js"><link rel="prefetch" href="/myblog/assets/js/26.db898d02.js"><link rel="prefetch" href="/myblog/assets/js/27.077c36e4.js"><link rel="prefetch" href="/myblog/assets/js/28.9899690f.js"><link rel="prefetch" href="/myblog/assets/js/29.08b73a47.js"><link rel="prefetch" href="/myblog/assets/js/3.5d73d129.js"><link rel="prefetch" href="/myblog/assets/js/30.b14a8eb2.js"><link rel="prefetch" href="/myblog/assets/js/31.586b80da.js"><link rel="prefetch" href="/myblog/assets/js/4.8357f65e.js"><link rel="prefetch" href="/myblog/assets/js/5.8ff30f7b.js"><link rel="prefetch" href="/myblog/assets/js/6.91ed8adc.js"><link rel="prefetch" href="/myblog/assets/js/7.8e486523.js"><link rel="prefetch" href="/myblog/assets/js/8.e46d9f1c.js"><link rel="prefetch" href="/myblog/assets/js/9.3ebc89de.js">
+    <link rel="stylesheet" href="/myblog/assets/css/0.styles.a938fca8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/myblog/" class="home-link router-link-active"><!----> <span class="site-name">Jiay</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span></span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/myblog/about/" class="sidebar-link">about</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>iot</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/myblog/experience/iot/nodered.html" class="sidebar-link">使用nodered + scadavis实现办公室webscada</a></li><li><a href="/myblog/experience/iot/noderedDbOperate.html" class="sidebar-link">使用nodered对常用数据库操作</a></li><li><a href="/myblog/experience/iot/noderedHttp.html" class="active sidebar-link">使用nodered实现httpclient和httpserver</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/myblog/experience/iot/noderedHttp.html#客户端请求服务" class="sidebar-link">客户端请求服务</a></li><li class="sidebar-sub-header"><a href="/myblog/experience/iot/noderedHttp.html#服务端提供服务" class="sidebar-link">服务端提供服务</a></li><li class="sidebar-sub-header"><a href="/myblog/experience/iot/noderedHttp.html#json-server" class="sidebar-link">json-server</a></li></ul></li><li><a href="/myblog/experience/iot/thingsboard.html" class="sidebar-link">thingsboard</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>experience</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>etd</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>issues</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>read</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="使用nodered实现httpclient和httpserver"><a href="#使用nodered实现httpclient和httpserver" aria-hidden="true" class="header-anchor">#</a> 使用nodered实现httpclient和httpserver</h1> <p>http应用非常简单，无非客户端请求和服务端提供服务，先上一个效果图，请求服务和提供服务：<br> <img src="/myblog/assets/img/httpdemoresult.7137482e.gif" alt="httpdemoresult"></p> <h2 id="客户端请求服务"><a href="#客户端请求服务" aria-hidden="true" class="header-anchor">#</a> 客户端请求服务</h2> <ul><li>创建流程<br>
+示例采用三个节点，注入、http request、debug</li></ul> <div class="language- extra-class"><pre class="language-text"><code>[
+    {
+        &quot;id&quot;: &quot;cc288cf7.d2442&quot;,
+        &quot;type&quot;: &quot;inject&quot;,
+        &quot;z&quot;: &quot;c7956a02.c84278&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;topic&quot;: &quot;&quot;,
+        &quot;payload&quot;: &quot;&quot;,
+        &quot;payloadType&quot;: &quot;date&quot;,
+        &quot;repeat&quot;: &quot;&quot;,
+        &quot;crontab&quot;: &quot;&quot;,
+        &quot;once&quot;: false,
+        &quot;onceDelay&quot;: 0.1,
+        &quot;x&quot;: 110,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: [
+            [
+                &quot;947677aa.2f92c8&quot;
+            ]
+        ]
+    },
+    {
+        &quot;id&quot;: &quot;947677aa.2f92c8&quot;,
+        &quot;type&quot;: &quot;http request&quot;,
+        &quot;z&quot;: &quot;c7956a02.c84278&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;method&quot;: &quot;GET&quot;,
+        &quot;ret&quot;: &quot;txt&quot;,
+        &quot;paytoqs&quot;: false,
+        &quot;url&quot;: &quot;http://localhost:8001/students/1&quot;,
+        &quot;tls&quot;: &quot;&quot;,
+        &quot;persist&quot;: false,
+        &quot;proxy&quot;: &quot;&quot;,
+        &quot;authType&quot;: &quot;&quot;,
+        &quot;x&quot;: 300,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: [
+            [
+                &quot;b6fa8b31.a0f9a8&quot;
+            ]
+        ]
+    },
+    {
+        &quot;id&quot;: &quot;b6fa8b31.a0f9a8&quot;,
+        &quot;type&quot;: &quot;debug&quot;,
+        &quot;z&quot;: &quot;c7956a02.c84278&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;active&quot;: true,
+        &quot;tosidebar&quot;: true,
+        &quot;console&quot;: false,
+        &quot;tostatus&quot;: false,
+        &quot;complete&quot;: &quot;false&quot;,
+        &quot;x&quot;: 500,
+        &quot;y&quot;: 100,
+        &quot;wires&quot;: []
+    }
+]
+</code></pre></div><h2 id="服务端提供服务"><a href="#服务端提供服务" aria-hidden="true" class="header-anchor">#</a> 服务端提供服务</h2> <ul><li>创建流程<br>
+示例采用三个节点，http in、http request、http response</li></ul> <div class="language- extra-class"><pre class="language-text"><code>[
+    {
+        &quot;id&quot;: &quot;d4450f50.c8d0e&quot;,
+        &quot;type&quot;: &quot;http in&quot;,
+        &quot;z&quot;: &quot;c7956a02.c84278&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;url&quot;: &quot;/nhs&quot;,
+        &quot;method&quot;: &quot;get&quot;,
+        &quot;upload&quot;: false,
+        &quot;swaggerDoc&quot;: &quot;&quot;,
+        &quot;x&quot;: 100,
+        &quot;y&quot;: 220,
+        &quot;wires&quot;: [
+            [
+                &quot;d2a5e002.21a2b&quot;
+            ]
+        ]
+    },
+    {
+        &quot;id&quot;: &quot;dc29f6d5.3fc0e8&quot;,
+        &quot;type&quot;: &quot;http response&quot;,
+        &quot;z&quot;: &quot;c7956a02.c84278&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;statusCode&quot;: &quot;&quot;,
+        &quot;headers&quot;: {},
+        &quot;x&quot;: 530,
+        &quot;y&quot;: 220,
+        &quot;wires&quot;: []
+    },
+    {
+        &quot;id&quot;: &quot;d2a5e002.21a2b&quot;,
+        &quot;type&quot;: &quot;http request&quot;,
+        &quot;z&quot;: &quot;c7956a02.c84278&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;method&quot;: &quot;GET&quot;,
+        &quot;ret&quot;: &quot;txt&quot;,
+        &quot;paytoqs&quot;: false,
+        &quot;url&quot;: &quot;http://localhost:8001/students/1&quot;,
+        &quot;tls&quot;: &quot;&quot;,
+        &quot;persist&quot;: false,
+        &quot;proxy&quot;: &quot;&quot;,
+        &quot;authType&quot;: &quot;&quot;,
+        &quot;x&quot;: 300,
+        &quot;y&quot;: 240,
+        &quot;wires&quot;: [
+            [
+                &quot;dc29f6d5.3fc0e8&quot;
+            ]
+        ]
+    }
+]
+</code></pre></div><h2 id="json-server"><a href="#json-server" aria-hidden="true" class="header-anchor">#</a> json-server</h2> <p>示例中http://localhost:8001/students/1是使用<a href="https://github.com/typicode/json-server" target="_blank" rel="noopener noreferrer">json-server<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>搭建的一个本地测试服务<br> <img src="/myblog/assets/img/jsonserver.0fa5f56b.png" alt="jsonserver"></p> <div><h2>欢迎来访</h2> <ul><li>有问题欢迎留言或加交流qq群:934022738</li> <li>转载请注明出处</li> <li>请小编喝茶~<br><img src="/myblog/assets/img/wx.dc92fb1a.png"></li></ul></div> <!----></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/myblog/experience/iot/noderedDbOperate.html" class="prev">
+          使用nodered对常用数据库操作
+        </a></span> <span class="next"><a href="/myblog/experience/iot/thingsboard.html">
+          thingsboard
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/myblog/assets/js/app.52fee459.js" defer></script><script src="/myblog/assets/js/2.9a8bb71e.js" defer></script><script src="/myblog/assets/js/11.5c9bcb05.js" defer></script><script src="/myblog/assets/js/12.98191c00.js" defer></script>
+  </body>
+</html>
