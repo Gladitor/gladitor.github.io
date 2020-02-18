@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>关于java中只有值传递的思考 | Jiay</title>
+    <meta name="description" content="welcome!">
+    <link rel="icon" href="/favicon.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.7be88f66.css" as="style"><link rel="preload" href="/assets/js/app.aabce3ab.js" as="script"><link rel="preload" href="/assets/js/2.4509bc2f.js" as="script"><link rel="preload" href="/assets/js/10.10eeb422.js" as="script"><link rel="preload" href="/assets/js/14.f1c89f8a.js" as="script"><link rel="prefetch" href="/assets/js/11.7ab6a46a.js"><link rel="prefetch" href="/assets/js/12.fa43a94d.js"><link rel="prefetch" href="/assets/js/13.71ddb414.js"><link rel="prefetch" href="/assets/js/15.f285253e.js"><link rel="prefetch" href="/assets/js/16.5fdd8741.js"><link rel="prefetch" href="/assets/js/17.f81e5048.js"><link rel="prefetch" href="/assets/js/18.01b53539.js"><link rel="prefetch" href="/assets/js/19.8ff53e2b.js"><link rel="prefetch" href="/assets/js/20.ef8ea18d.js"><link rel="prefetch" href="/assets/js/21.d356a764.js"><link rel="prefetch" href="/assets/js/22.7459d265.js"><link rel="prefetch" href="/assets/js/23.615deffc.js"><link rel="prefetch" href="/assets/js/24.1cf425a9.js"><link rel="prefetch" href="/assets/js/25.6e2dfede.js"><link rel="prefetch" href="/assets/js/26.f4a13d22.js"><link rel="prefetch" href="/assets/js/27.be9d3290.js"><link rel="prefetch" href="/assets/js/28.ea7a6962.js"><link rel="prefetch" href="/assets/js/29.3897ca2f.js"><link rel="prefetch" href="/assets/js/3.c4237d22.js"><link rel="prefetch" href="/assets/js/30.49688cbb.js"><link rel="prefetch" href="/assets/js/31.4d54a416.js"><link rel="prefetch" href="/assets/js/32.ef3faed9.js"><link rel="prefetch" href="/assets/js/33.42b64b57.js"><link rel="prefetch" href="/assets/js/4.6eacf80a.js"><link rel="prefetch" href="/assets/js/5.404c4bc1.js"><link rel="prefetch" href="/assets/js/6.3efd0096.js"><link rel="prefetch" href="/assets/js/7.fc3c200a.js"><link rel="prefetch" href="/assets/js/8.859396bb.js"><link rel="prefetch" href="/assets/js/9.1e899f87.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7be88f66.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Jiay</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span></span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/about/" class="sidebar-link">about</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>iot</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>exp</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>etd</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/etd/springcloud.html" class="sidebar-link">SpringCloud</a></li><li><a href="/etd/java/passbyvalue.html" class="active sidebar-link">关于java中只有值传递的思考</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/etd/java/passbyvalue.html#java基本数据类型" class="sidebar-link">java基本数据类型</a></li><li class="sidebar-sub-header"><a href="/etd/java/passbyvalue.html#java方法传参" class="sidebar-link">java方法传参</a></li><li class="sidebar-sub-header"><a href="/etd/java/passbyvalue.html#java中的引用传递" class="sidebar-link">java中的引用传递</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>issues</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>read</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="关于java中只有值传递的思考"><a href="#关于java中只有值传递的思考" aria-hidden="true" class="header-anchor">#</a> 关于java中只有值传递的思考</h1> <p>java中只有值传递？很多时候面试会碰到这个类型的题目，这是个老生常谈的问题，但很多人会栽在上面，根本原因是对基础原理把握不够清晰。先看一个题目：<br>
+1.下面这段代码中打印a是多少?</p> <div class="language- extra-class"><pre class="language-text"><code>int a = 1;//1
+func(a);//2
+System.out.println(&quot;a: &quot; + a);//4
+
+public static void func(int t){
+    t = 5;//3
+}
+</code></pre></div><p>控制台打印显示a为1，相信大多数人是不会错的。再看下面这个题目：<br>
+2.下面这段代码中打印str是多少?</p> <div class="language- extra-class"><pre class="language-text"><code>String str = &quot;hi&quot;;//1
+func_noEffect(str);//2
+System.out.println(&quot;str: &quot; + str);//4
+
+public static void func_noEffect(String str){
+    str = &quot;jiay&quot;;//3
+}
+</code></pre></div><p>控制台打印显示str为hi，这时候答对的就不会是大多数了。很多开发做了几年的都会栽在这里，有人就会问String类型是引用类型怎会会打印hi呢，这就是知其然而不知其所以然。</p> <h2 id="java基本数据类型"><a href="#java基本数据类型" aria-hidden="true" class="header-anchor">#</a> java基本数据类型</h2> <p>java中基本数据类型包括内置类型即值类型、引用类型、常量，这个问题涉及的值类型和引用类型。一般程序员都知道值类型存储在栈上，引用类型存储在堆上，下面用张图描述一下它们的存储结构。
+<img src="/assets/img/sjlx.9a4ed3d4.png" alt="sjlx"><br>
+图中a是int值类型，数值1存储在栈上，str是String引用类型，实例对象hi存储在堆上。注意String类型有一个引用变量是存储在栈上的，引用变量中存储的是实例对象hi的地址。</p> <h2 id="java方法传参"><a href="#java方法传参" aria-hidden="true" class="header-anchor">#</a> java方法传参</h2> <p>基本类型是值传递，引用类型是引用传递。按字面意思理解是没有问题的。<br>
+值传递方法中传入的是值类型的副本，问题1中值传递解释：</p> <ul><li>1.定义变量a值为1。</li> <li>2.调用函数func传入形参a的副本值1。</li> <li>3.修改形参的值为5。</li> <li>4.打印实参到控制台。这个过程中并没有更改实参的值。<br>
+图解：<br> <img src="/assets/img/zcd.a819188f.png" alt="zcd"><br>
+引用传递方法中传入的是引用变量的副本，问题2中引用传递解释：</li> <li>1.定义引用变量str指向对象实例hi。</li> <li>2.调用函数func_noEffect传入形参引用变量str的副本。</li> <li>3.形参(引用变量str的副本)指向String类型实例jiay。</li> <li>4.打印实参到控制台。这个过程中并没有更改实参对象。<br>
+图解：<br> <img src="/assets/img/yycd.5f2d1892.png" alt="yycd"><br>
+由上可知方法传参都是值类型的，因此从函数传参角度讲java中都是值传递。</li></ul> <h2 id="java中的引用传递"><a href="#java中的引用传递" aria-hidden="true" class="header-anchor">#</a> java中的引用传递</h2> <p>先看一段代码:</p> <div class="language- extra-class"><pre class="language-text"><code>StringBuilder stringBuilder = new StringBuilder(&quot;hi&quot;);
+func_effect(stringBuilder);
+System.out.println(&quot;sb: &quot; + stringBuilder);
+
+public static void func_effect(StringBuilder sb){
+    sb.append(&quot;,jiay&quot;);
+}
+</code></pre></div><p>这段代码打印出来sb：hi,jiay。有人会问这里怎么跟上面问题2不一样的，难到不应该是sb：hi吗，呵呵···。<br>
+图解：<br> <img src="/assets/img/yycd_effect.97244c51.png" alt="yycd_effect"><br>
+实参与形参指向的是同一个对象，所以函数调用完，控制台中打印实参的实例内容变成了hi,jiay。对比问题2这里大家应该注意到了String貌似跟其它的引用类型变量不太一样，String类型=(赋值)时指向一个新实例。</p> <p>现在再看文章标题就是另一番感受了，还是那就话，程序员应该知其然知其所以然。</p> <div><h2>欢迎来访</h2> <ul><li>有问题欢迎留言或加交流qq群:934022738</li> <li>转载请注明出处</li> <li>请小编喝茶~<br><img src="/assets/img/wx.dc92fb1a.png"></li></ul></div> <!----></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/etd/springcloud.html" class="prev">
+          SpringCloud
+        </a></span> <span class="next"><a href="/issues/cxfclient.html">
+          错误：编码GBK的不可映射字符
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.aabce3ab.js" defer></script><script src="/assets/js/2.4509bc2f.js" defer></script><script src="/assets/js/10.10eeb422.js" defer></script><script src="/assets/js/14.f1c89f8a.js" defer></script>
+  </body>
+</html>
