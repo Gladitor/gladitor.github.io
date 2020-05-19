@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>C# DataTable并发操作:索引超出了数组界限 | Jiay</title>
+    <meta name="description" content="welcome!">
+    <link rel="icon" href="/favicon.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.7be88f66.css" as="style"><link rel="preload" href="/assets/js/app.d19c26ef.js" as="script"><link rel="preload" href="/assets/js/2.9d11169c.js" as="script"><link rel="preload" href="/assets/js/37.f47683c5.js" as="script"><link rel="prefetch" href="/assets/js/10.24d6fbb6.js"><link rel="prefetch" href="/assets/js/11.15ffc7c2.js"><link rel="prefetch" href="/assets/js/12.ae1e10a7.js"><link rel="prefetch" href="/assets/js/13.265ae290.js"><link rel="prefetch" href="/assets/js/14.67c1cdca.js"><link rel="prefetch" href="/assets/js/15.6882cc83.js"><link rel="prefetch" href="/assets/js/16.309adde8.js"><link rel="prefetch" href="/assets/js/17.60cd3654.js"><link rel="prefetch" href="/assets/js/18.020106b5.js"><link rel="prefetch" href="/assets/js/19.53bce1a5.js"><link rel="prefetch" href="/assets/js/20.73073973.js"><link rel="prefetch" href="/assets/js/21.27fc3612.js"><link rel="prefetch" href="/assets/js/22.0728a1e5.js"><link rel="prefetch" href="/assets/js/23.ec05dc70.js"><link rel="prefetch" href="/assets/js/24.549b72cb.js"><link rel="prefetch" href="/assets/js/25.e16373a6.js"><link rel="prefetch" href="/assets/js/26.08f278ce.js"><link rel="prefetch" href="/assets/js/27.1f893ec9.js"><link rel="prefetch" href="/assets/js/28.ebb54fd8.js"><link rel="prefetch" href="/assets/js/29.63434311.js"><link rel="prefetch" href="/assets/js/3.e8baf029.js"><link rel="prefetch" href="/assets/js/30.1eb9296e.js"><link rel="prefetch" href="/assets/js/31.abc75df7.js"><link rel="prefetch" href="/assets/js/32.58d6f7a7.js"><link rel="prefetch" href="/assets/js/33.ada611a8.js"><link rel="prefetch" href="/assets/js/34.75c26d83.js"><link rel="prefetch" href="/assets/js/35.4660a003.js"><link rel="prefetch" href="/assets/js/36.07a433f8.js"><link rel="prefetch" href="/assets/js/38.83ab2bbf.js"><link rel="prefetch" href="/assets/js/39.66a6dc91.js"><link rel="prefetch" href="/assets/js/4.cb41e9d6.js"><link rel="prefetch" href="/assets/js/5.ec3b2abe.js"><link rel="prefetch" href="/assets/js/6.91cef39f.js"><link rel="prefetch" href="/assets/js/7.606e41c1.js"><link rel="prefetch" href="/assets/js/8.014e32e3.js"><link rel="prefetch" href="/assets/js/9.2b4edf93.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7be88f66.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Jiay</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span></span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/about/" class="sidebar-link">about</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>iot</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>exp</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>etd</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>issues</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/issues/cxfclient.html" class="sidebar-link">错误：编码GBK的不可映射字符</a></li><li><a href="/issues/datatable.html" class="active sidebar-link">C# DataTable并发操作:索引超出了数组界限</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/issues/datatable.html#场景" class="sidebar-link">场景</a></li><li class="sidebar-sub-header"><a href="/issues/datatable.html#排查异常原因" class="sidebar-link">排查异常原因</a></li><li class="sidebar-sub-header"><a href="/issues/datatable.html#结论" class="sidebar-link">结论</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>life</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="c-datatable并发操作-索引超出了数组界限"><a href="#c-datatable并发操作-索引超出了数组界限" aria-hidden="true" class="header-anchor">#</a> C# DataTable并发操作:索引超出了数组界限</h1> <h2 id="场景"><a href="#场景" aria-hidden="true" class="header-anchor">#</a> 场景</h2> <p>winform实现的OPC客户端，订阅数据更新时读取DataRow的数据不定时报出索引越界异常，debug模式下监控DataRow对象没有问题，对应索引列上有相应的值。现象非常离奇，异常不定时出现。订阅数据点量大，更新频率毫秒级，调试无法定位到具体原因。</p> <h2 id="排查异常原因"><a href="#排查异常原因" aria-hidden="true" class="header-anchor">#</a> 排查异常原因</h2> <p>很容易就确认是多线程并发读写DataTable有问题，因此首先从DataTable的用法上查找原因。</p> <ul><li>DataTable多线程下使用<br>
+程序中多线程处理的地方已经加锁处理，开始以为时锁使用不当，查阅了大量相关资料以及回顾以往的使用经历发现DataTable的应用没有问题。贴出部分代码。</li></ul> <div class="language- extra-class"><pre class="language-text"><code>lock (dt.Columns.SyncRoot)
+{
+   lock (dt.Rows.SyncRoot)
+    {
+        DataRow drTarget = dt.NewRow();
+        DataRow dr = null;
+        try
+        {
+            for (int i = 0; i &lt; NumItems; i++)
+            {
+                for (int j = 0; j &lt; itemDic.Count; j++)
+                {
+                    if (Convert.ToInt32(ClientHandles.GetValue(i + 1)) == Convert.ToInt32(itemDic.Keys.ToArray()[j]))
+                    {
+                        if (ItemValues.GetValue(i + 1) != null)
+                        {
+                            var clientHandle = ClientHandles.GetValue(i + 1);
+                            dr = dt.AsEnumerable().First(drtemp =&gt; { return drtemp[&quot;clientHandle&quot;].ToString() == clientHandle.ToString(); });
+                            if (dr != null)
+                            {
+                                string drvalue_old = dr[&quot;itemValue&quot;].ToString() == &quot;&quot; ? &quot;0&quot; : dr[&quot;itemValue&quot;].ToString();
+                                string drvalue = ItemValues.GetValue(i + 1).ToString();
+                                DateTime drtimestamp = DateTime.Parse(TimeStamps.GetValue(i + 1).ToString());
+                                setCellValue(dr, &quot;itemValue&quot;, ItemValues.GetValue(i + 1));
+                                setCellValue(dr, &quot;itemQuality&quot;, Qualities.GetValue(i + 1));
+                                setCellValue(dr, &quot;itemTimeStamp&quot;, drtimestamp);
+                                dataUpLoad(upstreamType, itemDic[clientHandle.ToString()], drvalue, drtimestamp.ToString());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }             
+}                                
+</code></pre></div><ul><li>Code Review<br>
+没有办法，看着日志文件中的异常信息难受，决定从头走查一遍代码。终于发现了端倪，在DataRow对象写操作时采用了异步的方式，看到这时一下觉醒，这里异步就会有问题。</li></ul> <div class="language- extra-class"><pre class="language-text"><code>void setCellValue(DataRow dr, string column, object value)
+{
+    try
+    {
+        if (value != null &amp;&amp; value.Equals(&quot;&quot;))
+        {
+            value = DBNull.Value;
+        }
+        if (this.InvokeRequired)
+        {
+            //this.BeginInvoke(new Action(() =&gt; { dr[column] = value; }));//1
+            this.Invoke(new Action(() =&gt; { dr[column] = value; }));//2
+        }
+        else
+            dr[column] = value;
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show(ex.Message + &quot; | &quot; + ex.StackTrace);
+    }
+}
+</code></pre></div><p>修改代码用2的方式，测试异常不再出现。上面代码执行委托时1是异步赋值，2是同步赋值，数据处理线程中DataTabel的操作是在锁下进行的，但1的方式委托给另外的线程进行DataRow的异步写操作，这时数据处理线程进行DataRow对象的读操作就可能有问题，所以这里并发出现问题。<br>
+查看以前数据采集工具中的用法也是用的第2种形式，所以没碰到该问题。</p> <h2 id="结论"><a href="#结论" aria-hidden="true" class="header-anchor">#</a> 结论</h2> <p>Invoke和BeginInvoke是有很大区别的，使用锁的代码块内部进行委托操作时不要使用异步。开始我就是忽略了这一点，并不是DataTable的用法有问题。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/issues/cxfclient.html" class="prev">
+          错误：编码GBK的不可映射字符
+        </a></span> <span class="next"><a href="/life/">
+          reading
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.d19c26ef.js" defer></script><script src="/assets/js/2.9d11169c.js" defer></script><script src="/assets/js/37.f47683c5.js" defer></script>
+  </body>
+</html>
