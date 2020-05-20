@@ -7,7 +7,7 @@
     <meta name="description" content="welcome!">
     <link rel="icon" href="/favicon.ico">
     
-    <link rel="preload" href="/assets/css/0.styles.7be88f66.css" as="style"><link rel="preload" href="/assets/js/app.feae3d3c.js" as="script"><link rel="preload" href="/assets/js/2.9d11169c.js" as="script"><link rel="preload" href="/assets/js/37.a6a030a9.js" as="script"><link rel="preload" href="/assets/js/17.60cd3654.js" as="script"><link rel="prefetch" href="/assets/js/10.0fc24656.js"><link rel="prefetch" href="/assets/js/11.15ffc7c2.js"><link rel="prefetch" href="/assets/js/12.946a13b1.js"><link rel="prefetch" href="/assets/js/13.bd4fd662.js"><link rel="prefetch" href="/assets/js/14.8453ee79.js"><link rel="prefetch" href="/assets/js/15.6882cc83.js"><link rel="prefetch" href="/assets/js/16.e82f266e.js"><link rel="prefetch" href="/assets/js/18.0a293eba.js"><link rel="prefetch" href="/assets/js/19.53bce1a5.js"><link rel="prefetch" href="/assets/js/20.9313130a.js"><link rel="prefetch" href="/assets/js/21.560761f5.js"><link rel="prefetch" href="/assets/js/22.de9219b1.js"><link rel="prefetch" href="/assets/js/23.ec05dc70.js"><link rel="prefetch" href="/assets/js/24.549b72cb.js"><link rel="prefetch" href="/assets/js/25.e16373a6.js"><link rel="prefetch" href="/assets/js/26.08f278ce.js"><link rel="prefetch" href="/assets/js/27.1f893ec9.js"><link rel="prefetch" href="/assets/js/28.a2e10036.js"><link rel="prefetch" href="/assets/js/29.c6149ebe.js"><link rel="prefetch" href="/assets/js/3.c8ad6853.js"><link rel="prefetch" href="/assets/js/30.dc08334f.js"><link rel="prefetch" href="/assets/js/31.ddc44b02.js"><link rel="prefetch" href="/assets/js/32.1aa5814c.js"><link rel="prefetch" href="/assets/js/33.ec2e29ca.js"><link rel="prefetch" href="/assets/js/34.75c26d83.js"><link rel="prefetch" href="/assets/js/35.cd2ce671.js"><link rel="prefetch" href="/assets/js/36.56237c84.js"><link rel="prefetch" href="/assets/js/38.cc6adeec.js"><link rel="prefetch" href="/assets/js/39.66a6dc91.js"><link rel="prefetch" href="/assets/js/4.cb41e9d6.js"><link rel="prefetch" href="/assets/js/5.68f8c29f.js"><link rel="prefetch" href="/assets/js/6.3f4d982b.js"><link rel="prefetch" href="/assets/js/7.62dbbd0c.js"><link rel="prefetch" href="/assets/js/8.014e32e3.js"><link rel="prefetch" href="/assets/js/9.b2b18358.js">
+    <link rel="preload" href="/assets/css/0.styles.7be88f66.css" as="style"><link rel="preload" href="/assets/js/app.045e280e.js" as="script"><link rel="preload" href="/assets/js/2.9d11169c.js" as="script"><link rel="preload" href="/assets/js/37.6c285c78.js" as="script"><link rel="preload" href="/assets/js/17.60cd3654.js" as="script"><link rel="prefetch" href="/assets/js/10.c942d9d5.js"><link rel="prefetch" href="/assets/js/11.392359be.js"><link rel="prefetch" href="/assets/js/12.ae1e10a7.js"><link rel="prefetch" href="/assets/js/13.bd4fd662.js"><link rel="prefetch" href="/assets/js/14.d0f96b09.js"><link rel="prefetch" href="/assets/js/15.6882cc83.js"><link rel="prefetch" href="/assets/js/16.74d29598.js"><link rel="prefetch" href="/assets/js/18.e3629d53.js"><link rel="prefetch" href="/assets/js/19.53bce1a5.js"><link rel="prefetch" href="/assets/js/20.3d9681b1.js"><link rel="prefetch" href="/assets/js/21.a3f343be.js"><link rel="prefetch" href="/assets/js/22.de9219b1.js"><link rel="prefetch" href="/assets/js/23.ec05dc70.js"><link rel="prefetch" href="/assets/js/24.549b72cb.js"><link rel="prefetch" href="/assets/js/25.e16373a6.js"><link rel="prefetch" href="/assets/js/26.3c5e9605.js"><link rel="prefetch" href="/assets/js/27.1f893ec9.js"><link rel="prefetch" href="/assets/js/28.7a7d7a75.js"><link rel="prefetch" href="/assets/js/29.63434311.js"><link rel="prefetch" href="/assets/js/3.2fb0cfc3.js"><link rel="prefetch" href="/assets/js/30.c515e9f9.js"><link rel="prefetch" href="/assets/js/31.0299544e.js"><link rel="prefetch" href="/assets/js/32.bda2107a.js"><link rel="prefetch" href="/assets/js/33.e72a44ab.js"><link rel="prefetch" href="/assets/js/34.21bdfc2c.js"><link rel="prefetch" href="/assets/js/35.09fd4276.js"><link rel="prefetch" href="/assets/js/36.56237c84.js"><link rel="prefetch" href="/assets/js/38.8c8db0e0.js"><link rel="prefetch" href="/assets/js/39.66a6dc91.js"><link rel="prefetch" href="/assets/js/4.cb41e9d6.js"><link rel="prefetch" href="/assets/js/5.3081917a.js"><link rel="prefetch" href="/assets/js/6.45977cbf.js"><link rel="prefetch" href="/assets/js/7.72c667b5.js"><link rel="prefetch" href="/assets/js/8.014e32e3.js"><link rel="prefetch" href="/assets/js/9.de4f80f1.js">
     <link rel="stylesheet" href="/assets/css/0.styles.7be88f66.css">
   </head>
   <body>
@@ -70,7 +70,20 @@
     }
 }
 </code></pre></div><p>修改代码用2的方式，测试异常不再出现。上面代码执行委托时1是异步赋值，2是同步赋值，数据处理线程中DataTabel的操作是在锁下进行的，但1的方式委托给另外的线程进行DataRow的异步写操作，这时数据处理线程进行DataRow对象的读操作就可能有问题，所以这里并发出现问题。<br>
-查看以前数据采集工具中的用法也是用的第2种形式，所以没碰到该问题。</p> <h2 id="结论"><a href="#结论" aria-hidden="true" class="header-anchor">#</a> 结论</h2> <p>Invoke和BeginInvoke是有很大区别的，使用锁的代码块内部进行委托操作时不要使用异步。开始我就是忽略了这一点，并不是DataTable的用法有问题。</p> <div><h2>欢迎来访</h2> <ul><li>有问题欢迎留言或加交流qq群:934022738</li> <li>转载请注明出处</li> <li>请小编喝茶~<br><img src="/assets/img/wx.dc92fb1a.png"></li></ul></div> <!----></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+查看以前数据采集工具中的用法也是用的第2种形式，所以没碰到该问题。</p> <ul><li>再次出现问题<br>
+生产环境中运行一段时间程序UI发生hang，这是因为生产环境数据量大UI线程堵塞了，于是还是要使用异步赋值。更改赋值核心代码解决问题。</li></ul> <div class="language- extra-class"><pre class="language-text"><code>if (this.InvokeRequired)
+{
+    this.BeginInvoke(new Action(() =&gt; {
+        lock (dr.Table.Columns.SyncRoot)
+        {
+            lock (dr.Table.Rows.SyncRoot)
+            {
+                dr[column] = value;
+            }
+        }
+    }));
+}
+</code></pre></div><h2 id="结论"><a href="#结论" aria-hidden="true" class="header-anchor">#</a> 结论</h2> <p>Invoke和BeginInvoke是有很大区别的，使用锁的代码块内部进行委托操作时不要使用异步。如果必须使用异步并发操作对象就要加锁。开始我就是忽略了这一点，并不是DataTable的用法有问题。</p> <div><h2>欢迎来访</h2> <ul><li>有问题欢迎留言或加交流qq群:934022738</li> <li>转载请注明出处</li> <li>请小编喝茶~<br><img src="/assets/img/wx.dc92fb1a.png"></li></ul></div> <!----></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
         ←
         <a href="/issues/cxfclient.html" class="prev">
           错误：编码GBK的不可映射字符
@@ -79,6 +92,6 @@
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"><!----></div></div>
-    <script src="/assets/js/app.feae3d3c.js" defer></script><script src="/assets/js/2.9d11169c.js" defer></script><script src="/assets/js/37.a6a030a9.js" defer></script><script src="/assets/js/17.60cd3654.js" defer></script>
+    <script src="/assets/js/app.045e280e.js" defer></script><script src="/assets/js/2.9d11169c.js" defer></script><script src="/assets/js/37.6c285c78.js" defer></script><script src="/assets/js/17.60cd3654.js" defer></script>
   </body>
 </html>
